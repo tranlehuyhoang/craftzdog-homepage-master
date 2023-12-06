@@ -8,7 +8,6 @@ import {
   List,
   ListItem,
   useColorModeValue,
-  chakra,
   Modal,
 
   ModalContent,
@@ -25,8 +24,6 @@ import {
 import { EmailIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
-import { IoLogoInstagram, IoLogoFacebook, IoLogoTiktok, } from 'react-icons/io5'
-import Image from 'next/image'
 
 
 import { useState } from 'react';
@@ -67,9 +64,7 @@ const FullScreenImage = ({ src, alt }) => {
   );
 };
 
-const ProfileImage = chakra(Image, {
-  shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
-})
+
 
 const Home = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -122,6 +117,7 @@ const Home = () => {
             css={{ backdropFilter: 'blur(10px)' }}
           >
             Hello, I&apos;m Yến Chu Nè
+
           </Box>
 
           <Box display={{ md: 'flex' }}>
