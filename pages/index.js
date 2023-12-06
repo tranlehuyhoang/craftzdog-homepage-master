@@ -25,8 +25,47 @@ import {
 import { EmailIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
-import { IoLogoInstagram, IoLogoFacebook, } from 'react-icons/io5'
+import { IoLogoInstagram, IoLogoFacebook, IoLogoTiktok, } from 'react-icons/io5'
 import Image from 'next/image'
+
+
+import { useState } from 'react';
+
+const FullScreenImage = ({ src, alt }) => {
+  const [showFullScreen, setShowFullScreen] = useState(false);
+
+  const openFullScreen = () => {
+    setShowFullScreen(true);
+    document.body.style.overflow = 'hidden'; // Ngăn cuộn trang khi hiển thị ảnh toàn màn hình
+  };
+
+  const closeFullScreen = () => {
+    setShowFullScreen(false);
+    document.body.style.overflow = ''; // Cho phép cuộn trang lại sau khi đóng ảnh toàn màn hình
+  };
+
+  if (showFullScreen) {
+    return (
+      <div className="fullscreen-overlay" onClick={closeFullScreen}>
+        <div className="fullscreen-wrapper">
+          <img src={src} alt={alt} className="fullscreen-image" />
+          <button className="fullscreen-close" onClick={closeFullScreen}>
+            Close
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="thumbnail-image"
+      onClick={openFullScreen}
+    />
+  );
+};
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -108,12 +147,8 @@ const Home = () => {
                 borderRadius="full"
                 overflow="hidden"
               >
-                <ProfileImage
-                  src="/profile5.jpg"
-                  alt="Profile image"
-                  borderRadius="full"
-                  width="100"
-                  height="100"
+                <FullScreenImage
+                  src={"/profile5.jpg"} alt="Profile image"
                 />
               </Box>
             </Box>
@@ -221,12 +256,55 @@ const Home = () => {
             </Heading>
             <List>
               <ListItem>
+                <Link href="https://www.tiktok.com/@yenchuneh" target="_blank">
+                  <Button
+                    variant="ghost"
+                    colorScheme="teal"
+
+                  >
+                    <span className="chakra-button__icon css-1wh2kri">
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        focusable="false"
+                        loading="lazy"
+                        width={50}
+                        height={50}
+                        decoding="async"
+                        data-nimg={1}
+                        style={{ color: "transparent" }}
+                        srcSet="https://img.icons8.com/clouds/100/tiktok.png?fbclid=IwAR3E9Q_-kkXC-ITOc_9Uz3XGt91xBvfjVQRy33Sge-WH-9ZbTy74nmiiUU4"
+                        src="https://img.icons8.com/clouds/100/tiktok.png?fbclid=IwAR3E9Q_-kkXC-ITOc_9Uz3XGt91xBvfjVQRy33Sge-WH-9ZbTy74nmiiUU4"
+                      />
+
+                    </span>
+                    Tiktok
+                  </Button>
+                </Link>
+              </ListItem>
+              <ListItem>
                 <Link href="https://www.facebook.com/yenchuuuu" target="_blank">
                   <Button
                     variant="ghost"
                     colorScheme="teal"
-                    leftIcon={<IoLogoFacebook />}
+
                   >
+                    <span className="chakra-button__icon css-1wh2kri">
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        focusable="false"
+                        loading="lazy"
+                        width={50}
+                        height={50}
+                        decoding="async"
+                        data-nimg={1}
+                        style={{ color: "transparent" }}
+                        srcSet="https://img.icons8.com/clouds/100/facebook.png?fbclid=IwAR3E9Q_-kkXC-ITOc_9Uz3XGt91xBvfjVQRy33Sge-WH-9ZbTy74nmiiUU4"
+                        src="https://img.icons8.com/clouds/100/facebook.png?fbclid=IwAR3E9Q_-kkXC-ITOc_9Uz3XGt91xBvfjVQRy33Sge-WH-9ZbTy74nmiiUU4"
+                      />
+
+                    </span>
                     FaceBook
                   </Button>
                 </Link>
@@ -236,8 +314,24 @@ const Home = () => {
                   <Button
                     variant="ghost"
                     colorScheme="teal"
-                    leftIcon={<IoLogoInstagram />}
+
                   >
+                    <span className="chakra-button__icon css-1wh2kri">
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        focusable="false"
+                        loading="lazy"
+                        width={50}
+                        height={50}
+                        decoding="async"
+                        data-nimg={1}
+                        style={{ color: "transparent" }}
+                        srcSet="https://img.icons8.com/clouds/100/instagram.png?fbclid=IwAR3E9Q_-kkXC-ITOc_9Uz3XGt91xBvfjVQRy33Sge-WH-9ZbTy74nmiiUU4"
+                        src="https://img.icons8.com/clouds/100/instagram.png?fbclid=IwAR3E9Q_-kkXC-ITOc_9Uz3XGt91xBvfjVQRy33Sge-WH-9ZbTy74nmiiUU4"
+                      />
+
+                    </span>
                     Instagram
                   </Button>
                 </Link>
