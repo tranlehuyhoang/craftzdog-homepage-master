@@ -67,7 +67,8 @@ const FullScreenImage = ({ src, alt }) => {
 
 
 const Home = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isOpenModal1, onOpen: onOpenModal1, onClose: onCloseModal1 } = useDisclosure();
+  const { isOpen: isOpenModal2, onOpen: onOpenModal2, onClose: onCloseModal2 } = useDisclosure();
   const toast = useToast()
   const handleClick = () => {
     const phoneNumber = '0868943096';
@@ -86,7 +87,7 @@ const Home = () => {
       <Layout>
 
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpenModal1} onClose={onCloseModal1}>
           <ModalOverlay />
           <ModalContent>
             <ModalCloseButton />
@@ -100,6 +101,27 @@ const Home = () => {
                 data-nimg={1}
                 srcSet="/qr.jpg"
                 src="/qr.jpg"
+                style={{ color: "transparent", objectFit: "cover", borderRadius: 10 }}
+              />
+
+            </ModalBody>
+
+          </ModalContent>
+        </Modal>
+        <Modal isOpen={isOpenModal2} onClose={onCloseModal2}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalCloseButton />
+            <ModalBody style={{ padding: '70px' }}>
+              <img
+                alt=""
+                loading="lazy"
+                width={800}
+                height={800}
+                decoding="async"
+                data-nimg={1}
+                srcSet="/profile5.jpg"
+                src="/profile5.jpg"
                 style={{ color: "transparent", objectFit: "cover", borderRadius: 10 }}
               />
 
@@ -142,9 +164,25 @@ const Home = () => {
                 display="inline-block"
                 borderRadius="full"
                 overflow="hidden"
+                onClick={onOpenModal2}
               >
                 <FullScreenImage
                   src={"/profile5.jpg"} alt="Profile image"
+                />
+
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  focusable="false"
+                  loading="lazy"
+                  width={50}
+                  height={50}
+                  decoding="async"
+
+                  data-nimg={1}
+                  style={{ color: "transparent", marginLeft: '80px', position: 'absolute', top: '130px' }}
+                  srcSet="https://cdn.discordapp.com/emojis/1052139948075143239.gif"
+                  src="https://cdn.discordapp.com/emojis/1052139948075143239.gif"
                 />
               </Box>
             </Box>
@@ -161,7 +199,7 @@ const Home = () => {
                   <Button
                     variant="ghost"
                     colorScheme="teal"
-                    onClick={onOpen}
+                    onClick={onOpenModal1}
                   >
                     <span className="chakra-button__icon css-1wh2kri">
                       <img
